@@ -9,6 +9,8 @@ var started = false;
 
 var level = 0;
 
+var isPressed=false;
+
 $(".btn").click(function(){
 
   var userChosenColour = $(this).attr("id");
@@ -60,6 +62,15 @@ $(document).keydown(function(){
   }
 })
 
+$(".start-button").click(function(){
+  if(!isPressed){
+
+    $("#level-title").text("Level "+ level);
+    nextSequence();
+    isPressed = true;
+  }
+})
+
 function checkAnswer(currentLevel){
   if(gamePattern[currentLevel] === userClickedPattern[currentLevel]){
     console.log("success");
@@ -86,5 +97,6 @@ function checkAnswer(currentLevel){
 function startOver(){
   level = 0;
   gamePattern = [];
-   started = false;
+  started = false;
+  isPressed = false;
 }
